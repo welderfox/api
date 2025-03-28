@@ -1,6 +1,11 @@
 package com.abastek.api.dtos;
 
 import java.util.UUID;
+
+import org.springframework.beans.BeanUtils;
+
+import com.abastek.api.models.ManutencoesModel;
+
 import java.time.LocalDate;
 
 public class ManutencoesDTO {
@@ -10,6 +15,10 @@ public class ManutencoesDTO {
     private LocalDate data;
     private Long equipamentoId;
     private String equipamentoNome; //TODO: para relatório
+
+    public ManutencoesDTO(ManutencoesModel model){
+        BeanUtils.copyProperties(model, this);
+    }
 
     public UUID getId() {
         return id;

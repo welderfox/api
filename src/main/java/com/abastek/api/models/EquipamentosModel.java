@@ -10,7 +10,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name ="TB_EQUIPAMENTOS")
-public class Equipamentos {
+public class EquipamentosModel {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -18,9 +18,9 @@ public class Equipamentos {
     private String nome;
     private String setor;
   
-    public Equipamentos(){}
+    public EquipamentosModel(){}
     
-    public Equipamentos(String nome, String setor) {
+    public EquipamentosModel(String nome, String setor) {
         this.nome = nome;
         this.setor = setor;
     }

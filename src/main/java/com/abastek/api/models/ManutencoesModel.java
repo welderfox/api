@@ -11,7 +11,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name ="TB_MANUTENCOES")
-public class Manutencoes {
+public class ManutencoesModel {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,9 +20,9 @@ public class Manutencoes {
     private LocalDate data;
     private Long equipamentoId;
 
-    public Manutencoes(){}
+    public ManutencoesModel(){}
 
-    public Manutencoes(String descricao, LocalDate data, Long equipamentoId) {
+    public ManutencoesModel(String descricao, LocalDate data, Long equipamentoId) {
         this.descricao = descricao;
         this.data = data;
         this.equipamentoId = equipamentoId;

@@ -2,11 +2,19 @@ package com.abastek.api.dtos;
 
 import java.util.UUID;
 
+import org.springframework.beans.BeanUtils;
+
+import com.abastek.api.models.EquipamentosModel;
+
 public class EquipamentosDTO {
 
     private UUID id;
     private String nome;
     private String setor;
+
+    public EquipamentosDTO(EquipamentosModel model) {
+        BeanUtils.copyProperties(model, this);
+    }
 
     public UUID getId() {
         return id;
