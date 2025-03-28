@@ -1,14 +1,34 @@
 package com.abastek.api.models;
 
+import java.util.UUID;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name ="TB_EQUIPAMENTOS")
 public class Equipamentos {
-    private Long id;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
     private String nome;
     private String setor;
-
-    public Long getId() {
+  
+    public Equipamentos(){}
+    
+    public Equipamentos(String nome, String setor) {
+        this.nome = nome;
+        this.setor = setor;
+    }
+    
+    public UUID getId() {
         return id;
     }
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
     public String getNome() {
