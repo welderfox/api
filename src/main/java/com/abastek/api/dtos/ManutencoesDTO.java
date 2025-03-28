@@ -13,8 +13,10 @@ public class ManutencoesDTO {
     private UUID id;
     private String descricao;
     private LocalDate data;
-    private Long equipamentoId;
+    private UUID equipamentoId;
     private String equipamentoNome; //TODO: para relatório
+
+    public ManutencoesDTO(){}
 
     public ManutencoesDTO(ManutencoesModel model){
         BeanUtils.copyProperties(model, this);
@@ -38,10 +40,10 @@ public class ManutencoesDTO {
     public void setData(LocalDate data) {
         this.data = data;
     }
-    public Long getEquipamentoId() {
+    public UUID getEquipamentoId() {
         return equipamentoId;
     }
-    public void setEquipamentoId(Long equipamentoId) {
+    public void setEquipamentoId(UUID equipamentoId) {
         this.equipamentoId = equipamentoId;
     }
     public String getEquipamentoNome() {

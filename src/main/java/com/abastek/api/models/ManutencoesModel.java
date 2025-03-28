@@ -18,11 +18,11 @@ public class ManutencoesModel {
     private UUID id;
     private String descricao;
     private LocalDate data;
-    private Long equipamentoId;
+    private UUID equipamentoId;
 
     public ManutencoesModel(){}
 
-    public ManutencoesModel(String descricao, LocalDate data, Long equipamentoId) {
+    public ManutencoesModel(String descricao, LocalDate data, UUID equipamentoId) {
         this.descricao = descricao;
         this.data = data;
         this.equipamentoId = equipamentoId;
@@ -46,10 +46,10 @@ public class ManutencoesModel {
     public void setData(LocalDate data) {
         this.data = data;
     }
-    public Long getEquipamentoId() {
+    public UUID getEquipamentoId() {
         return equipamentoId;
     }
-    public void setEquipamentoId(Long equipamentoId) {
+    public void setEquipamentoId(UUID equipamentoId) {
         this.equipamentoId = equipamentoId;
     }
 }
