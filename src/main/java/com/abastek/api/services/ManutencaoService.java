@@ -34,7 +34,7 @@ public class ManutencaoService {
     public ManutencoesDTO insert(ManutencoesModel manutencao) {
         service.findById(manutencao.getEquipamentoId());
         ManutencoesModel salva = repository.save(manutencao);
-        return new ManutencoesDTO(salva);
+        return toDTO(salva);
     }
 
     public ManutencoesDTO update(UUID id,ManutencoesModel model){
@@ -51,7 +51,7 @@ public class ManutencaoService {
         repository.deleteById(id);
     }
 
-    /*private ManutencoesDTO toDTO(ManutencoesModel manutencao) {
+    private ManutencoesDTO toDTO(ManutencoesModel manutencao) {
         EquipamentosModel equipamento = service.findById(manutencao.getEquipamentoId());
         ManutencoesDTO dto = new ManutencoesDTO();
         dto.setId(manutencao.getId());
@@ -60,5 +60,5 @@ public class ManutencaoService {
         dto.setEquipamentoId(equipamento.getId());
         dto.setEquipamentoNome(equipamento.getNome());
         return dto;
-    }*/
+    }
 }

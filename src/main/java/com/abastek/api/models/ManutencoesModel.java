@@ -9,6 +9,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+import org.springframework.lang.NonNull;
+
+
 @Entity
 @Table(name ="TB_MANUTENCOES")
 public class ManutencoesModel {
@@ -22,7 +25,7 @@ public class ManutencoesModel {
 
     public ManutencoesModel(){}
 
-    public ManutencoesModel(String descricao, LocalDate data, UUID equipamentoId) {
+    public ManutencoesModel(@NonNull String descricao, @NonNull LocalDate data, @NonNull UUID equipamentoId) {
         this.descricao = descricao;
         this.data = data;
         this.equipamentoId = equipamentoId;
