@@ -15,6 +15,7 @@ public class ManutencoesDTO {
     private LocalDate data;
     private UUID equipamentoId;
     private String equipamentoNome; //TODO: para relatório
+    private LocalDate dataDeFabricacao;
 
     public ManutencoesDTO(){}
 
@@ -51,5 +52,13 @@ public class ManutencoesDTO {
     }
     public void setEquipamentoNome(String equipamentoNome) {
         this.equipamentoNome = equipamentoNome;
+    }
+
+    public LocalDate getDataDeFabricacao() {
+        return dataDeFabricacao;
+    }
+
+    public void setDataDeFabricacao(LocalDate dataDeFabricacao) {
+        this.dataDeFabricacao = dataDeFabricacao;
     }
 }

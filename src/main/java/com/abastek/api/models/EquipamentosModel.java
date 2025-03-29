@@ -1,5 +1,6 @@
 package com.abastek.api.models;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 import jakarta.persistence.Entity;
@@ -17,12 +18,14 @@ public class EquipamentosModel {
     private UUID id;
     private String nome;
     private String setor;
+    private LocalDate dataDeFabricacao;
   
     public EquipamentosModel(){}
     
-    public EquipamentosModel(String nome, String setor) {
+    public EquipamentosModel(String nome, String setor, LocalDate dataDeFabricacao) {
         this.nome = nome;
         this.setor = setor;
+        this.dataDeFabricacao = dataDeFabricacao;
     }
     
     public UUID getId() {
@@ -43,4 +46,14 @@ public class EquipamentosModel {
     public void setSetor(String setor) {
         this.setor = setor;
     }
+
+    public LocalDate getDataDeFabricacao() {
+        return dataDeFabricacao;
+    }
+
+    public void setDataDeFabricacao(LocalDate dataDeFabricacao) {
+        this.dataDeFabricacao = dataDeFabricacao;
+    }
+
+    
 }

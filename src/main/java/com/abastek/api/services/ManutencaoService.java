@@ -2,6 +2,7 @@ package com.abastek.api.services;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -20,10 +21,8 @@ public class ManutencaoService {
         this.service = service;
     }
 
-    public List<ManutencoesDTO> list(){
-        List<ManutencoesModel> result = repository.findAll();
-
-        return result.stream().map(x -> new ManutencoesDTO(x)).toList();
+        public List<ManutencoesDTO> list() {
+        return repository.findAll().stream().map(this::toDTO).collect(Collectors.toList());
     }
     
     public ManutencoesDTO findById(UUID id){
@@ -59,6 +58,7 @@ public class ManutencaoService {
         dto.setData(manutencao.getData());
         dto.setEquipamentoId(equipamento.getId());
         dto.setEquipamentoNome(equipamento.getNome());
+        dto.setDataDeFabricacao(equipamento.getDataDeFabricacao());
         return dto;
     }
 }

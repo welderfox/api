@@ -1,5 +1,6 @@
 package com.abastek.api.dtos;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 import org.springframework.beans.BeanUtils;
@@ -11,6 +12,7 @@ public class EquipamentosDTO {
     private UUID id;
     private String nome;
     private String setor;
+    private LocalDate dataDeFabricacao;
 
     public EquipamentosDTO(EquipamentosModel model) {
         BeanUtils.copyProperties(model, this);
@@ -34,4 +36,13 @@ public class EquipamentosDTO {
     public void setSetor(String setor) {
         this.setor = setor;
     }
+
+    public LocalDate getDataDeFabricacao() {
+        return dataDeFabricacao;
+    }
+
+    public void setDataDeFabricacao(LocalDate dataDeFabricacao) {
+        this.dataDeFabricacao = dataDeFabricacao;
+    }
+    
 }

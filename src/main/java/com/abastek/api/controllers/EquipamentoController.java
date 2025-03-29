@@ -27,7 +27,7 @@ private final EquipamentoService service;
     }
 
     @GetMapping
-    public ResponseEntity<List<EquipamentosModel>> listar() {
+    public ResponseEntity<List<EquipamentosModel>> getAll() {
         return ResponseEntity.ok(service.list());
     }
 
@@ -37,17 +37,17 @@ private final EquipamentoService service;
     }
 
     @PostMapping
-    public ResponseEntity<EquipamentosModel> salvar(@RequestBody EquipamentosModel equipamento) {
+    public ResponseEntity<EquipamentosModel> insert(@RequestBody EquipamentosModel equipamento) {
         return ResponseEntity.ok(service.insert(equipamento));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<EquipamentosModel> atualizar(@PathVariable UUID id, @RequestBody EquipamentosModel equipamento) {
+    public ResponseEntity<EquipamentosModel> updat(@PathVariable UUID id, @RequestBody EquipamentosModel equipamento) {
         return ResponseEntity.ok(service.update(id, equipamento));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletar(@PathVariable UUID id) {
+    public ResponseEntity<Void> delet(@PathVariable UUID id) {
         service.deletar(id);
         return ResponseEntity.noContent().build();
     }
