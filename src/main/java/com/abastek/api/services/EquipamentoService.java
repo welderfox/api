@@ -34,9 +34,14 @@ public class EquipamentoService {
 
     public EquipamentosModel update(UUID id, EquipamentosModel equipamentos){
         EquipamentosModel exist = findById(id);
-        exist.setNome(exist.getNome());
-        exist.setSetor(exist.getSetor());
+        exist.setNome(equipamentos.getNome());
+        exist.setSetor(equipamentos.getSetor());
 
         return repository.save(exist);
+    }
+
+    public void deletar(UUID id) {
+        findById(id);
+        repository.deleteById(id);
     }
 }

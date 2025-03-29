@@ -31,6 +31,12 @@ public class ManutencaoService {
         return new ManutencoesDTO(result);
     }
 
+    public ManutencoesDTO insert(ManutencoesModel manutencao) {
+        service.findById(manutencao.getEquipamentoId());
+        ManutencoesModel salva = repository.save(manutencao);
+        return new ManutencoesDTO(salva);
+    }
+
     public ManutencoesDTO update(UUID id,ManutencoesModel model){
         ManutencoesDTO dto = findById(id);
         model.setData(dto.getData());
