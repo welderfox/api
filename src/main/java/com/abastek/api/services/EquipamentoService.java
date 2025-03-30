@@ -27,13 +27,6 @@ public class EquipamentoService {
         return repository.findById(id).orElseThrow(() -> new RuntimeException("Equipamento não encontrado..."));
     }
 
-    /*
-     * @Transactional
-     * public EquipamentosModel insert(EquipamentosModel equipamentos){
-     * return repository.save(equipamentos);
-     * }
-     */
-
     @Transactional
     public EquipamentosModel insert(EquipamentosModel equipamentos) {
         // Gera o código único
@@ -44,6 +37,7 @@ public class EquipamentoService {
         return repository.save(equipamentos);
     }
 
+    @Transactional
     public EquipamentosModel update(UUID id, EquipamentosModel equipamentos) {
         EquipamentosModel exist = findById(id);
         exist.setNome(equipamentos.getNome());
@@ -52,7 +46,7 @@ public class EquipamentoService {
         return repository.save(exist);
     }
 
-    public void deletar(UUID id) {
+    public void delet(UUID id) {
         findById(id);
         repository.deleteById(id);
     }
@@ -66,7 +60,7 @@ public class EquipamentoService {
         // Obtém o último equipamento registrado (ordem decrescente pelo código)
         EquipamentosModel lastEquipamento = repository.findFirstByOrderByCodigoDesc();
 
-        // Se não houver registros, começa de "EQP-001"
+        // Se existir registros, começa de "EQP-001"
         String lastCodigo = lastEquipamento == null ? "EQP-000" : lastEquipamento.getCodigo();
 
         // Extrai o número sequencial do código, por exemplo: "001"

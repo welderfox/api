@@ -61,8 +61,8 @@ private final EquipamentoService service;
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delet(@PathVariable UUID id) {
-        service.deletar(id);
+    public ResponseEntity<Void> delete(@PathVariable UUID id) {
+        service.delet(id);
         return ResponseEntity.noContent().build();
     }
 }

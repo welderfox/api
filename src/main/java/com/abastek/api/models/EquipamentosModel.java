@@ -10,41 +10,47 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name ="TB_EQUIPAMENTOS")
+@Table(name = "TB_EQUIPAMENTOS")
 public class EquipamentosModel {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     private String nome;
     private String setor;
     private LocalDate dataDeFabricacao;
     private String codigo;
-  
-    public EquipamentosModel(){}
-    
-    public EquipamentosModel(String nome, String setor, LocalDate dataDeFabricacao,String codigo) {
+
+    public EquipamentosModel() {
+    }
+
+    public EquipamentosModel(String nome, String setor, LocalDate dataDeFabricacao, String codigo) {
         this.nome = nome;
         this.setor = setor;
         this.dataDeFabricacao = dataDeFabricacao;
         this.codigo = codigo;
     }
-    
+
     public UUID getId() {
         return id;
     }
+
     public void setId(UUID id) {
         this.id = id;
     }
+
     public String getNome() {
         return nome;
     }
+
     public void setNome(String nome) {
         this.nome = nome;
     }
+
     public String getSetor() {
         return setor;
     }
+
     public void setSetor(String setor) {
         this.setor = setor;
     }

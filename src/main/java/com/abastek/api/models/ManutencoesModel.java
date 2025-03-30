@@ -14,23 +14,25 @@ import jakarta.persistence.Table;
 
 import org.springframework.lang.NonNull;
 
-
 @Entity
-@Table(name ="TB_MANUTENCOES")
+@Table(name = "TB_MANUTENCOES")
 public class ManutencoesModel {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     private String descricao;
     private LocalDate data;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "equipamento_id", nullable = false)
     private EquipamentosModel equipamento;
 
-    public ManutencoesModel(){}
+    public ManutencoesModel() {
+    }
 
-    public ManutencoesModel(@NonNull String descricao, @NonNull LocalDate data, @NonNull EquipamentosModel equipamento) {
+    public ManutencoesModel(@NonNull String descricao, @NonNull LocalDate data,
+            @NonNull EquipamentosModel equipamento) {
         this.descricao = descricao;
         this.data = data;
         this.equipamento = equipamento;
@@ -39,18 +41,23 @@ public class ManutencoesModel {
     public UUID getId() {
         return id;
     }
+
     public void setId(UUID id) {
         this.id = id;
     }
+
     public String getDescricao() {
         return descricao;
     }
+
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
+
     public LocalDate getData() {
         return data;
     }
+
     public void setData(LocalDate data) {
         this.data = data;
     }
