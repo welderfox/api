@@ -32,6 +32,7 @@ public class RelatorioService {
             dto.setSetor(eq.getSetor());
             dto.setDescricaoManutencao(m.getDescricao());
             dto.setDataManutencao(m.getData());
+            dto.setCodigoEquipamento(eq.getCodigo());
             return dto;
         }).collect(Collectors.toList());
     }

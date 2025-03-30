@@ -44,5 +44,4 @@ public class EquipamentosDTO {
     public void setDataDeFabricacao(LocalDate dataDeFabricacao) {
         this.dataDeFabricacao = dataDeFabricacao;
     }
-    
 }

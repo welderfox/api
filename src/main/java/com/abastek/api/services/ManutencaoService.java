@@ -19,7 +19,8 @@ public class ManutencaoService {
     private final ManutencoesRepository repository;
     private final EquipamentoRepository equipamentoRepository;
 
-    public ManutencaoService(ManutencoesRepository repository, EquipamentoRepository equipamentoRepository) {
+    public ManutencaoService(ManutencoesRepository repository,
+            EquipamentoRepository equipamentoRepository) {
         this.repository = repository;
         this.equipamentoRepository = equipamentoRepository;
     }
@@ -53,20 +54,33 @@ public class ManutencaoService {
         return toDTO(salva);
     }
 
-    public ManutencoesDTO update(UUID id, ManutencoesModel model) {
-        ManutencoesDTO dto = findById(id);
-        model.setData(dto.getData());
-        model.setDescricao(dto.getDescricao());
-
-        ManutencoesModel manutencoesModel = repository.save(model);
-        return new ManutencoesDTO(manutencoesModel);
-    }
-
+    public ManutencoesDTO update(UUID id, ManutencoesModel manutencaoAtualizada) {
+        // Busca a manutenção existente
+        ManutencoesModel manutencaoExistente = repository.findById(id)
+            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Manutenção não encontrada"));
+    
+        // Atualiza apenas os campos permitidos
+        manutencaoExistente.setDescricao(manutencaoAtualizada.getDescricao());
+        manutencaoExistente.setData(manutencaoAtualizada.getData());
+    
+        // Valida se a data da manutenção é válida (não pode ser anterior à data de fabricação)
+        EquipamentosModel equipamento = manutencaoExistente.getEquipamento();
+        if (manutencaoAtualizada.getData().isBefore(equipamento.getDataDeFabricacao())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+                    "A data da manutenção não pode ser anterior à data de fabricação do equipamento.");
+        }
+    
+        //Atualização no banco de dados
+        ManutencoesModel manutencaoSalva = repository.save(manutencaoExistente);
+    
+        return toDTO(manutencaoSalva);
+    }  
+    
     public void deletar(UUID id) {
         findById(id);
         repository.deleteById(id);
     }
-
+    
     private ManutencoesDTO toDTO(ManutencoesModel manutencao) {
         EquipamentosModel equipamento = manutencao.getEquipamento();
         ManutencoesDTO dto = new ManutencoesDTO();
@@ -76,6 +90,7 @@ public class ManutencaoService {
         dto.setEquipamentoId(equipamento.getId());
         dto.setEquipamentoNome(equipamento.getNome());
         dto.setDataDeFabricacao(equipamento.getDataDeFabricacao());
+        dto.setCodigo(equipamento.getCodigo());
         return dto;
     }
 }

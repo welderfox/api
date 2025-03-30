@@ -65,11 +65,12 @@ public class RelatorioController {
             document.add(new Paragraph(title));
 
             //Criando a tabela
-            Table table = new Table(4);
+            Table table = new Table(5);
             table.addCell(new Cell().add(new Paragraph("Equipamento").setFont(boldFont)));
             table.addCell(new Cell().add(new Paragraph("Setor").setFont(boldFont)));
             table.addCell(new Cell().add(new Paragraph("Descrição").setFont(boldFont)));
             table.addCell(new Cell().add(new Paragraph("Data").setFont(boldFont)));
+            table.addCell(new Cell().add(new Paragraph("Codigo").setFont(boldFont)));
 
             //Preenchendo a tabela com os dados
             for (RelatorioDTO dto : dados) {
@@ -77,6 +78,7 @@ public class RelatorioController {
                 table.addCell(new Cell().add(new Paragraph(dto.getSetor())));
                 table.addCell(new Cell().add(new Paragraph(dto.getDescricaoManutencao())));
                 table.addCell(new Cell().add(new Paragraph(dto.getDataManutencao().toString())));
+                table.addCell(new Cell().add(new Paragraph(dto.getCodigoEquipamento())));
             }
 
             document.add(table);

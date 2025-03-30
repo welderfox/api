@@ -7,6 +7,7 @@ public class RelatorioDTO {
     private String setor;
     private String descricaoManutencao;
     private LocalDate dataManutencao;
+    private String codigoEquipamento;
 
     public RelatorioDTO() {}
 
@@ -33,5 +34,13 @@ public class RelatorioDTO {
     }
     public void setDataManutencao(LocalDate dataManutencao) {
         this.dataManutencao = dataManutencao;
+    }
+
+    public String getCodigoEquipamento() {
+        return codigoEquipamento;
+    }
+
+    public void setCodigoEquipamento(String codigoEquipamento) {
+        this.codigoEquipamento = codigoEquipamento;
     }
 }

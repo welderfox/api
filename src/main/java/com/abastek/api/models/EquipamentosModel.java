@@ -19,13 +19,15 @@ public class EquipamentosModel {
     private String nome;
     private String setor;
     private LocalDate dataDeFabricacao;
+    private String codigo;
   
     public EquipamentosModel(){}
     
-    public EquipamentosModel(String nome, String setor, LocalDate dataDeFabricacao) {
+    public EquipamentosModel(String nome, String setor, LocalDate dataDeFabricacao,String codigo) {
         this.nome = nome;
         this.setor = setor;
         this.dataDeFabricacao = dataDeFabricacao;
+        this.codigo = codigo;
     }
     
     public UUID getId() {
@@ -55,5 +57,11 @@ public class EquipamentosModel {
         this.dataDeFabricacao = dataDeFabricacao;
     }
 
-    
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
 }

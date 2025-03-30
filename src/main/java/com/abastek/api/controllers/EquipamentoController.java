@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.abastek.api.models.EquipamentosModel;
+import com.abastek.api.repository.EquipamentoRepository;
 import com.abastek.api.services.EquipamentoService;
 
 @RestController
@@ -22,8 +23,11 @@ public class EquipamentoController {
 
 private final EquipamentoService service;
 
-        public EquipamentoController(EquipamentoService service) {
+        private final EquipamentoRepository repository;
+
+        public EquipamentoController(EquipamentoService service, EquipamentoRepository repository) {
         this.service = service;
+        this.repository = repository;
     }
 
     @GetMapping
@@ -42,8 +46,18 @@ private final EquipamentoService service;
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<EquipamentosModel> updat(@PathVariable UUID id, @RequestBody EquipamentosModel equipamento) {
+    public ResponseEntity<EquipamentosModel> update(@PathVariable UUID id, @RequestBody EquipamentosModel equipamento) {
         return ResponseEntity.ok(service.update(id, equipamento));
+    }
+
+    public ResponseEntity<EquipamentosModel> updateEquipamento(@PathVariable UUID id, @RequestBody EquipamentosModel equipamento) {
+        // Impede que o código seja alterado
+        EquipamentosModel existingEquipamento = repository.findById(id).orElseThrow(() -> new RuntimeException("Equipamento não encontrado"));
+        equipamento.setCodigo(existingEquipamento.getCodigo()); // Mantém o código original
+        equipamento.setId(id);
+
+        EquipamentosModel updatedEquipamento = service.insert(equipamento);
+        return ResponseEntity.ok(updatedEquipamento);
     }
 
     @DeleteMapping("/{id}")
