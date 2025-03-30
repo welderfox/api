@@ -4,9 +4,12 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 import org.springframework.lang.NonNull;
@@ -21,14 +24,16 @@ public class ManutencoesModel {
     private UUID id;
     private String descricao;
     private LocalDate data;
-    private UUID equipamentoId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "equipamento_id", nullable = false)
+    private EquipamentosModel equipamento;
 
     public ManutencoesModel(){}
 
-    public ManutencoesModel(@NonNull String descricao, @NonNull LocalDate data, @NonNull UUID equipamentoId) {
+    public ManutencoesModel(@NonNull String descricao, @NonNull LocalDate data, @NonNull EquipamentosModel equipamento) {
         this.descricao = descricao;
         this.data = data;
-        this.equipamentoId = equipamentoId;
+        this.equipamento = equipamento;
     }
 
     public UUID getId() {
@@ -49,10 +54,12 @@ public class ManutencoesModel {
     public void setData(LocalDate data) {
         this.data = data;
     }
-    public UUID getEquipamentoId() {
-        return equipamentoId;
+
+    public EquipamentosModel getEquipamento() {
+        return equipamento;
     }
-    public void setEquipamentoId(UUID equipamentoId) {
-        this.equipamentoId = equipamentoId;
+
+    public void setEquipamento(EquipamentosModel equipamento) {
+        this.equipamento = equipamento;
     }
 }

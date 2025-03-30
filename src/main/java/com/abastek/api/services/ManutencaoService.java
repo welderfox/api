@@ -4,39 +4,56 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.abastek.api.dtos.ManutencoesDTO;
 import com.abastek.api.models.EquipamentosModel;
 import com.abastek.api.models.ManutencoesModel;
+import com.abastek.api.repository.EquipamentoRepository;
 import com.abastek.api.repository.ManutencoesRepository;
 
 @Service
 public class ManutencaoService {
     private final ManutencoesRepository repository;
-    private final EquipamentoService service;
+    private final EquipamentoRepository equipamentoRepository;
 
-    public ManutencaoService(ManutencoesRepository repository, EquipamentoService service){
+    public ManutencaoService(ManutencoesRepository repository, EquipamentoRepository equipamentoRepository) {
         this.repository = repository;
-        this.service = service;
+        this.equipamentoRepository = equipamentoRepository;
     }
 
-        public List<ManutencoesDTO> list() {
+    public List<ManutencoesDTO> list() {
         return repository.findAll().stream().map(this::toDTO).collect(Collectors.toList());
     }
-    
-    public ManutencoesDTO findById(UUID id){
-        ManutencoesModel result = repository.findById(id).get();
-        return new ManutencoesDTO(result);
+
+    public ManutencoesDTO findById(UUID id) {
+        ManutencoesModel result = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Manutenção não encontrada"));
+        return toDTO(result);
     }
 
     public ManutencoesDTO insert(ManutencoesModel manutencao) {
-        service.findById(manutencao.getEquipamentoId());
+        // Busca o equipamento por ID antes de salvar
+        UUID equipamentoId = manutencao.getEquipamento().getId();
+        EquipamentosModel equipamento = equipamentoRepository.findById(equipamentoId)
+                .orElseThrow(() -> new RuntimeException("Equipamento não encontrado"));
+
+        // Verifica se a data da manutenção não seja anterior à data de fabricação do
+        // equipamento associado.
+        if (manutencao.getData().isBefore(equipamento.getDataDeFabricacao())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+                    "A data da manutenção não pode ser anterior à data de fabricação do equipamento.");
+        }
+
+        manutencao.setEquipamento(equipamento);
+
         ManutencoesModel salva = repository.save(manutencao);
         return toDTO(salva);
     }
 
-    public ManutencoesDTO update(UUID id,ManutencoesModel model){
+    public ManutencoesDTO update(UUID id, ManutencoesModel model) {
         ManutencoesDTO dto = findById(id);
         model.setData(dto.getData());
         model.setDescricao(dto.getDescricao());
@@ -51,7 +68,7 @@ public class ManutencaoService {
     }
 
     private ManutencoesDTO toDTO(ManutencoesModel manutencao) {
-        EquipamentosModel equipamento = service.findById(manutencao.getEquipamentoId());
+        EquipamentosModel equipamento = manutencao.getEquipamento();
         ManutencoesDTO dto = new ManutencoesDTO();
         dto.setId(manutencao.getId());
         dto.setDescricao(manutencao.getDescricao());
