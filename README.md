@@ -61,10 +61,10 @@
 
 ---
 
-## 📌 Link ou Arquivo da Collection do Postman
+## 📌 Link para Download da Collection do Postman
 [Baixar Collection do Postman](https://drive.google.com/file/d/1jwykRzQXapOz81ED6Q9vRXxY0n-suM1Y/view?usp=sharing)
 
-## 📌 Link ou Arquivo da Collection do Insomnia
+## 📌 Link para Download da Collection do Insomnia
 [Baixar Collection do Insomnia](https://drive.google.com/file/d/1gAhYTdJtmbUCb-avQd_wwM5bo7YxABWG/view?usp=sharing)
 
 ## 📌 Link para Download do Arquivo SQL
