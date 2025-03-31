@@ -43,7 +43,7 @@
 ### 5️⃣ **Rodar o Front-end**
 1. Clone o repositório do projeto:
    ```sh
-   git clone https://github.com/seu-usuario/seu-repositorio.git
+   git clone https://github.com/welderfox/equipamentos-manutencao.git
    ```
 2. Vá até a pasta do front-end:
    ```sh
@@ -78,6 +78,12 @@
 - **ReactJS + Material UI**: Para criar um front-end, apesar de não dominar totalmente esta tecnologia ja trabalhei com ela criando projetos simples.
 - **Tomei a decisão de implementar o relatorio no Bakc-end, caso ficasse imcompleto o Front-end, por este motivo exitem dois endponits para relatorio um deles retornando pdf.
 ---
+
+## 📌 Referencias Técnicas
+- **Referencias de cursos que estou fazendo atualmente, buscando melhorar minhas habilidades em Java e como desenvolvedor no geral. 
+- **Projetos pessoais disponiveis no meu GitHub.
+- **Projetos desenvolvidos por Nélio Alves no intensivo Java + Spring dentre outras referencias de cursos e video aulas disponiveis no seu canal do Youtubee na plataforma Udemy.
+- **Pesquisas na web e IA
 
 📌 **Dúvidas?** Entre em contato!
 
