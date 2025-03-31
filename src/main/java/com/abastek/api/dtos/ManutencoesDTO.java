@@ -14,7 +14,7 @@ public class ManutencoesDTO {
     private String descricao;
     private LocalDate data;
     private UUID equipamentoId;
-    private String equipamentoNome; //TODO: para relatório
+    private String equipamentoNome;
     private LocalDate dataDeFabricacao;
     private String codigo;
 
