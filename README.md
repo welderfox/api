@@ -21,7 +21,7 @@
 ### 3️⃣ **Configurar o projeto**
 1. Clone o repositório do projeto:
    ```sh
-   git clone https://github.com/seu-usuario/seu-repositorio.git
+   git clone https://github.com/welderfox/api.git
    ```
 2. Acesse a pasta do projeto:
    ```sh
